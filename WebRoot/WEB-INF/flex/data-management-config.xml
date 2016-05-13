@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="data-service" 
+    class="flex.data.DataService">
+
+    <adapters>
+        <!-- The default Java assembler adapter -->
+        <adapter-definition id="java-dao" class="flex.data.adapters.JavaAdapter" default="true"/>
+        <!-- An extension of the JavaAdapter that allows sharing a Data Management destination with Managed Remoting destinations -->
+        <adapter-definition id="mr-java-dao" class="flex.data.adapters.ManagedRemotingDataAdapter" />
+        <!-- an Actionscript only adapter which has no persistence on the server -->
+        <adapter-definition id="actionscript" class="flex.data.adapters.ASObjectAdapter"/>
+    </adapters>
+
+	<default-channels>
+        	<channel ref="my-amf" />
+    </default-channels>
+</service>

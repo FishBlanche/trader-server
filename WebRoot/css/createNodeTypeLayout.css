@@ -1,0 +1,132 @@
+ul { 
+	list-style: none;	
+}
+
+ul.pageMainContent { 
+	margin: 0 auto;		
+	width: 300px;	
+	text-align: left;
+}
+
+ul.pageMainContent:first {
+	padding: 15px 20px;
+	width: 100%;
+	text-shadow: 0px 1px 0px black;
+}
+
+ul.pageMainContent li h2 { 
+	padding: 6px 0px 0px 20px;						
+	color: white;
+	font: 18px 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
+}
+
+ul.pageMainContent > li h1 { 
+	font: 20px 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif; 
+	color: #FEBF53;						
+}
+
+ul.pageMainContent li img { 
+	float: left;
+	height: 35px;
+	width: 35px;
+}
+
+ul.pageMainContent li a { 
+	float: right;	
+	text-decoration: none;
+	text-align: left;		
+}
+
+.button { 
+	display: inline-block;
+	font-weight: 600;				
+	border-radius: 20px;
+	color: #FEBF53;		
+	width: 50px;									
+	height: 20px;		
+	padding: 5px 0 0 10px;			
+}
+
+.grey { 
+	background: #181817;	
+}
+
+.fontBigger { 
+	font-size: large;				
+}
+
+.floatLeft { 						
+	float: left; 
+}
+
+.label { 
+	font: bold;
+	font-size: medium;
+	color: #FEBF53;	
+	float: left;
+	padding: 0px 20px 5px 0px;						
+}
+
+div.input input, textarea { 
+	outline: none;
+	height: 20px;	
+	outline: none;		
+	color: #AAA;
+	border: none; 
+	padding: 0px 10px 0px 10px; 
+	border-radius: 20px;
+}
+
+textarea { 
+	height: 50px;							
+}
+
+.black { 
+	background: rgba(0, 0, 0, 0.2);
+}
+
+div.sensorNameDes { 
+	color: white;			
+}
+
+fieldset { 
+	margin-left: 120px;				
+	border: 0px;	
+	display: block;	
+	padding-bottom: 9px; 			
+}
+
+label.label_check input {
+	margin-right: 5px;	
+}
+
+label.label_link { 
+	font-style: italic;
+	color: #FEBF53; 
+}
+label.label_link a{ 
+	color: #FEBF53; 
+}
+.label_check h3 { 
+	float: left;
+	padding: 0;
+	margin: 0;	
+	width: 100px;
+}
+
+.label_align { 
+	float: right; 
+}
+
+input { 
+	border: 2px inset;
+	display: inline-block;		
+}
+
+label.c_on { 
+	background: url("check-on.png") no-repeat;		
+}
+
+.checkboxes img {  
+	padding: 0px 0px 0px 5px;				
+}

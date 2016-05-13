@@ -1,0 +1,5 @@
+@@
+nodeInfo
+Moteid_ID,nodeType,Location_X,Location_Y,Latitude,Longitude,Remarks
+11012%%4%% %% %% %% %%Hello
+@@

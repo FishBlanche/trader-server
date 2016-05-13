@@ -1,0 +1,49 @@
+ul.pageMainContent { 
+	margin: 20 auto;		
+	list-style: none;	
+	width: 350px;					
+	text-align: center;
+}
+
+ul.pageMainContent:first {
+	padding: 15px 20px;
+	width: 100%;
+	text-shadow: 0px 1px 0px black;
+}
+
+ul.pageMainContent li h2 { 
+	padding: 6px 0px 0px 20px;						
+	color: white;
+	font: 18px 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif;
+}
+
+ul.pageMainContent > li h1 { 
+	font: 20px 'Trebuchet MS', 'Lucida Grande', Arial, sans-serif; 
+	color: #FEBF53;						
+}
+
+ul.pageMainContent li img { 
+	float: left;
+	height: 35px;
+	width: 35px;
+}
+
+ul.pageMainContent li a { 
+	float: right;	
+	text-decoration: none;
+	text-align: left;		
+}
+
+.button { 
+	display: inline-block;
+	font-weight: bold;
+	border-radius: 20px;
+	color: #FEBF53;		
+	width: 80px;			
+	height: 20px;		
+	padding: 5px 0 0 10px;			
+}
+
+.grey { 
+	background: #181817;		
+}

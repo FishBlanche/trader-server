@@ -1,0 +1,16 @@
+@@
+nodeType
+nodeType,remarks,sensors
+10%%World%%temperature,co2
+8%%The%%co2,humidity,tt
+@@
+sensorType
+sensorName,unit,range_low,range_high
+tt5%%Q%% %%10
+tt4%%Q%% %%10
+tt3%%Q%% %%10
+@@
+nodeInfo
+Moteid_ID,nodeType,Location_X,Location_Y,Latitude,Longitude,Remarks
+11012%%4%% %% %% %% %%Hello
+@@

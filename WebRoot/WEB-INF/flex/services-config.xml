@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services-config>
+	<services>
+		<service-include file-path="remoting-config.xml"/>
+<!-- 		<service-include file-path="proxy-config.xml"/> -->
+		<service-include file-path="messaging-config.xml"/>
+<!-- 		<service-include file-path="data-management-config.xml"/>
+		<service-include file-path="managed-remoting-config.xml"/> -->
+		<!-- SAP Connector service             Note: SAP Connector service must come before the ModelDeploymentService in the config.         <service class="com.adobe.livecycle.sap.connector.SapConnectorInitializationService" id="sap-connector-service">            <properties>                <sap-session-provider>com.adobe.livecycle.sap.connector.JCoSessionReferenceProviderImpl</sap-session-provider>            </properties>        </service>       
+		 -->
+		<!--  <service class="fiber.data.services.ModelDeploymentService" id="model-deploy-service"/> -->
+		    <!--     Application level default channels. Application level default channels are         necessary when a dynamic destination is being used by a service component        and no ChannelSet has been defined for the service component. In that case,        application level default channels will be used to contact the destination.       
+	 -->	<default-channels>
+			<channel ref="my-amf" />
+		</default-channels>
+	</services>
+	<security>
+		<login-command class="flex.messaging.security.TomcatLoginCommand" server="Tomcat"/>
+		<!-- Uncomment the correct app server        <login-command class="flex.messaging.security.TomcatLoginCommand" server="JBoss"/>        <login-command class="flex.messaging.security.WeblogicLoginCommand" server="Weblogic"/>        <login-command class="flex.messaging.security.WebSphereLoginCommand" server="WebSphere"/>        -->
+		<security-constraint id="basic-read-access">
+			<auth-method>Basic</auth-method>
+			<roles>
+				<role>guests</role>
+				<role>accountants</role>
+				<role>employees</role>
+				<role>managers</role>
+			</roles>
+		</security-constraint>
+	</security>
+	<!-- Socket servers that NIO endpoints all share -->
+<!-- 	<servers>
+		<server id="my-nio-server" class="flex.messaging.socketserver.SocketServer"/>
+		       <server id="secure-nio-server" class="flex.messaging.socketserver.SocketServer">            <properties>                <keystore-file>{context.root}/WEB-INF/flex/localhost.keystore</keystore-file>                <keystore-password>changeit</keystore-password>            </properties>        </server>       
+	</servers> -->
+	<channels>
+		<!-- Servlet Based endpoints -->
+		<channel-definition id="my-amf" class="mx.messaging.channels.AMFChannel">
+			<endpoint url="http://{server.name}:{server.port}/{context.root}/messagebroker/amf" class="flex.messaging.endpoints.AMFEndpoint"/>
+			<properties>
+				<polling-enabled>false</polling-enabled>
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-polling-amf" class="mx.messaging.channels.AMFChannel">
+			<endpoint url="http://{server.name}:{server.port}/{context.root}/messagebroker/amfpolling" class="flex.messaging.endpoints.AMFEndpoint"/>
+			<properties>
+				<polling-enabled>true</polling-enabled>
+				<polling-interval-seconds>8</polling-interval-seconds>
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-http" class="mx.messaging.channels.HTTPChannel">
+			<endpoint url="http://{server.name}:{server.port}/{context.root}/messagebroker/http" class="flex.messaging.endpoints.HTTPEndpoint"/>
+		</channel-definition>
+	<!-- 	Secure Servlet-based endpoints -->
+		<channel-definition id="my-secure-amf" class="mx.messaging.channels.SecureAMFChannel">
+			<endpoint url="https://{server.name}:{server.port}/{context.root}/messagebroker/amfsecure" class="flex.messaging.endpoints.SecureAMFEndpoint"/>
+			<properties>
+				<!-- HTTPS requests on some browsers do not work when pragma "no-cache" are set -->
+				<add-no-cache-headers>false</add-no-cache-headers>
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-secure-http" class="mx.messaging.channels.SecureHTTPChannel">
+			<endpoint url="https://{server.name}:{server.port}/{context.root}/messagebroker/httpsecure" class="flex.messaging.endpoints.SecureHTTPEndpoint"/>
+			<properties>
+				<!-- HTTPS requests on some browsers do not work when pragma "no-cache" are set -->
+				<add-no-cache-headers>false</add-no-cache-headers>
+			</properties>
+		</channel-definition>
+		<!-- NIO based endpoints -->
+		<!-- <channel-definition id="my-rtmp" class="mx.messaging.channels.RTMPChannel">
+			<endpoint url="rtmp://{server.name}:2038" class="flex.messaging.endpoints.RTMPEndpoint"/>
+			<properties>
+				<idle-timeout-minutes>20</idle-timeout-minutes>
+				Close connections from clients that have fallen back to RTMPT polling which is not efficient. This allows the client                      to hunt to the next channel in its channel set.  RTMPT fallback is not recommended for production as other channels                      have better performance (streaming or long polling
+				<block-rtmpt-polling-clients>true</block-rtmpt-polling-clients>
+				for deployment on WebSphere, must be mapped to a WorkManager available in the web application's jndi context.                <websphere-workmanager-jndi-name>java:comp/env/wm/MessagingWorkManager</websphere-workmanager-jndi-name>               
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-nio-amf" class="mx.messaging.channels.AMFChannel">
+			<endpoint url="http://{server.name}:2880/nioamf" class="flex.messaging.endpoints.NIOAMFEndpoint"/>
+			<server ref="my-nio-server"/>
+			<properties>
+				<polling-enabled>false</polling-enabled>
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-nio-amf-poll" class="mx.messaging.channels.AMFChannel">
+			<endpoint url="http://{server.name}:2880/nioamfpoll" class="flex.messaging.endpoints.NIOAMFEndpoint"/>
+			<server ref="my-nio-server"/>
+			<properties>
+				<polling-enabled>true</polling-enabled>
+				<polling-interval-millis>3000</polling-interval-millis>
+			</properties>
+		</channel-definition>
+		<channel-definition id="my-nio-http" class="mx.messaging.channels.HTTPChannel">
+			<endpoint url="http://{server.name}:2880/niohttp" class="flex.messaging.endpoints.NIOHTTPEndpoint"/>
+			<server ref="my-nio-server"/>
+			<properties>
+				<polling-enabled>false</polling-enabled>
+			</properties>
+		</channel-definition> -->
+		<!-- Secure NIO based endpoints -->
+		<!--        <channel-definition id="secure-nio-amf" class="mx.messaging.channels.SecureAMFChannel">            
+<endpoint url="https://{server.name}:2443/securenioamf" class="flex.messaging.endpoints.SecureNIOAMFEndpoint"/>            
+<server ref="secure-nio-server"/>            <properties>                <polling-enabled>false</polling-enabled>            
+</properties>        </channel-definition>        <channel-definition id="secure-nio-http" class="mx.messaging.channels.SecureHTTPChannel">            
+<endpoint url="https://{server.name}:2443/secureniohttp" class="flex.messaging.endpoints.SecureNIOHTTPEndpoint"/>            
+<server ref="secure-nio-server"/>            <properties>                <polling-enabled>false</polling-enabled>            
+</properties>        </channel-definition>        -->
+	</channels>
+<!-- 	<logging>
+		<target class="flex.messaging.log.ConsoleTarget" level="Warn">
+			<properties>
+				<prefix>[Data Services]</prefix>
+				<includeDate>false</includeDate>
+				<includeTime>false</includeTime>
+				<includeLevel>true</includeLevel>
+				<includeCategory>false</includeCategory>
+			</properties>
+			<filters>
+				<pattern>Endpoint.*</pattern>
+				<pattern>Service.*</pattern>
+				<pattern>Configuration</pattern>
+				<pattern>SocketServer.*</pattern>
+				<pattern>Model.*</pattern>
+			</filters>
+		</target>
+	</logging> -->
+	<system>
+		<redeploy>
+			<enabled>true</enabled>
+			<watch-interval>20</watch-interval>
+			<watch-file>{context.root}/WEB-INF/flex/services-config.xml</watch-file>
+			<watch-file>{context.root}/WEB-INF/flex/proxy-config.xml</watch-file>
+			<watch-file>{context.root}/WEB-INF/flex/remoting-config.xml</watch-file>
+			<watch-file>{context.root}/WEB-INF/flex/messaging-config.xml</watch-file>
+			<watch-file>{context.root}/WEB-INF/flex/data-management-config.xml</watch-file>
+			<touch-file>{context.root}/WEB-INF/web.xml</touch-file>
+		</redeploy>
+	</system>
+	<!--       A deserialization validator is registered with the Message broker and provides        the opportunity to validate the creation of classes and the assignment of a property       of an instance to a value for incoming (client-to-server) deserialization. A deserialization        validator is expected to implement the flex.messaging.validators.DeserializationValidator       interface, and only one deserialization validator can be set per MessageBroker.       The flex.messaging.validators.ClassDeserializationValidator is provided as the default        implementation.    -->
+	<validators>
+		<!--           Default implementation of DeserializationValidator that supports           allow and disallow classes.        -->
+		<validator class="flex.messaging.validators.ClassDeserializationValidator">
+			<properties>
+				<!-- Explicitly disallow the following classes/packages. Note that if any packages/classes                      are in the allow list, all other classes/packages will be disallowed.                 <disallow-classes>                    <class name="my.secret1.CustomerClass"/>                    <class name="my.secret2.*"/>                </disallow-classes> -->
+				<!-- Allow the following classes/packages -->
+				<allow-classes>
+					<!-- Any custom types that are sent between the client and the server should                         be included here. -->
+					<!--  class name="feed.*"/-->
+					<!-- The following classes/packages are used internally by ADEP Data Services and                          
+are allowed by default unless explicitly disallowed. Note that disallowing                         any 
+of these packages/classes may results in errors during deserialization.                    <class name="flex.data.*"/>                    
+<class name="flex.messaging.**"/>                    <class name="java.lang.Boolean"/>                    
+<class name="java.lang.Byte"/>                    <class name="java.lang.Double"/>                    
+<class name="java.lang.Float"/>                    <class name="java.lang.Integer"/>                    
+<class name="java.lang.Long"/>                    <class name="java.lang.Object"/>                    
+<class name="java.lang.Short"/>                    <class name="java.lang.String"/>                    
+<class name="java.io.Externalizable"/>                    <class name="java.util.*"/>                    
+<class name="org.w3c.dom.Document"/>                    <class name="\[B"/>                    <class 
+name="\[Ljava.lang.Object;"/>                    -->
+				</allow-classes>
+			</properties>
+		</validator>
+		<!--           A custom implementation of DeserializationValidator.        <validator class="my.company.validators.TestDeserializationValidator"/>        -->
+	</validators>
+</services-config>

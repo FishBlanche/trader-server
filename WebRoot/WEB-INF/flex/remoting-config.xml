@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" 
+    class="flex.messaging.services.RemotingService">
+
+    <adapters>
+        <adapter-definition id="java-object" class="flex.messaging.services.remoting.adapters.JavaAdapter" default="true"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+    
+ 
+    <destination id="NewestSensingService">
+        <properties>
+            <source>feed.NewestSensingService</source>
+        </properties>
+    </destination>
+    
+   <destination id="SensingHistoryService"> 
+        <properties>
+            <source>feed.SensingHistoryService</source>
+        </properties>
+    </destination>
+	
+    <destination id="SensorInfoService">
+		<properties>
+			<source>oldVersion.SensorInfoService</source>
+		</properties>
+	</destination>
+	
+    <destination id="NodeInfoService">
+        <properties>
+        <source>feed.NodeInfoService</source>
+        </properties>
+    </destination>
+     <destination id="HistoryService">
+        <properties>
+        <source>feed.HistoryService</source>
+        </properties>
+    </destination>
+    
+     <destination id="PushService">
+        <properties>
+        <source>service.ApnsService</source>
+        </properties>
+    </destination>
+    
+    <destination id="GettingCameraService">
+        <properties>
+        <source>feed.GettingCameraService</source>
+        </properties>
+    </destination>
+    
+    <destination id="GettingCameraPictureService">
+        <properties>
+        <source>feed.GettingCameraPictureService</source>
+        </properties>
+    </destination>
+</service>

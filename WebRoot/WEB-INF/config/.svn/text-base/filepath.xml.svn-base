@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 上传路径内容定义 -->
+	<filepath>
+		<!-- 基本上传路径 此路径要设置单独的web访问路径 访问路径为 /upload -->
+        <name>basePath</name>
+        <path>/ying</path>			
+    </filepath>
+    <filepath>
+        <name>/ying</name>
+        <path>C:/temp</path>
+    </filepath>
+    <!-- 团购图片 -->
+    <filepath>
+        <name>TuanGou</name>
+        <path>/TuanGou/</path>
+    </filepath>
+  
+	<filepath>
+        <name>EmailAcc</name>
+        <path>/EmailAcc/</path>
+    </filepath>
+    <filepath>
+        <name>editerPic</name>
+        <path>/editerPic/</path>
+    </filepath>
+    <filepath>
+        <name>YXZLAcc</name>
+        <path>/YXZLAcc/</path>
+    </filepath>
+    <filepath>
+        <name>file</name>
+        <path>/file/</path>
+    </filepath>
+    <filepath>
+        <name>GuiCheng</name>
+        <path>/file/GuiCheng/</path>
+    </filepath>
+    <filepath>
+        <name>RenWu</name>
+        <path>/file/RenWu/</path>
+    </filepath>
+    <filepath>
+        <name>FAX</name>
+        <path>/file/FAX/</path>
+    </filepath>
+	 <filepath>
+        <name>CZmband</name>
+        <path>/file/CZmband/</path>
+    </filepath>
+	 <filepath>
+        <name>TZmband</name>
+        <path>/file/TZmband/</path>
+    </filepath>
+	 <filepath>
+        <name>Xinwen</name>
+        <path>/file/Xinwen/</path>
+    </filepath>
+    <filepath>
+        <name>Ztid</name>
+        <path>/file/Ztid/</path>
+    </filepath>
+    <filepath>
+        <name>GOODS</name>
+        <path>/file/GOODS/</path>
+    </filepath>
+    <filepath>
+        <name>AD</name>
+        <path>/file/AD/</path>
+    </filepath>
+</root>

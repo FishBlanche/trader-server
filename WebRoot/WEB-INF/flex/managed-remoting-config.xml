@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <service class="flex.data.ManagedRemotingService"  id="managed-remoting-service" >
+    <adapters>
+        <adapter-definition id="java-soa" class="flex.data.adapters.ManagedRemotingAdapter" default="true"/>
+    </adapters>
+    <default-channels>
+        <channel ref="my-rtmp"/>
+    </default-channels>
+</service>

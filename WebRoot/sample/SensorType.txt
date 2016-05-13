@@ -1,0 +1,5 @@
+@@
+sensorType
+sensorName,unit,range_low,range_high
+tt4%%Q%% %%10
+@@

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>ADEP Data Services</display-name>
+	<description>ADEP Data Services Application</description>
+
+<!-- 	<login-config> -->
+		<!-- Authorization setting for SSL -->
+<!-- 		<auth-method>CLIENT-CERT</auth-method> -->
+<!-- 		<realm-name>Client Cert Users-only Area</realm-name> -->
+<!-- 	</login-config> -->
+
+<!-- 	<security-constraint> -->
+		<!-- Authorization setting for SSL -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>SSL</web-resource-name> -->
+<!-- 			<url-pattern>/login/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+
+<!-- 		<user-data-constraint> -->
+<!-- 			<transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!-- 		</user-data-constraint> -->
+<!-- 	</security-constraint> -->
+
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>messages</param-value>
+	</context-param>
+	<listener>
+		<listener-class>flex.messaging.HttpFlexSession</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>ServletInitializer</servlet-name>
+		<servlet-class>cron.ServletInitializer</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- MessageBroker Servlet -->
+	<servlet>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<servlet-class>flex.messaging.MessageBrokerServlet</servlet-class>
+		<init-param>
+			<param-name>services.configuration.file</param-name>
+			<param-value>/WEB-INF/flex/services-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Add RDS servlets <servlet> <servlet-name>RDSDispatchServlet</servlet-name> 
+		<display-name>RDSDispatchServlet</display-name> <servlet-class>flex.rds.server.servlet.FrontEndServlet</servlet-class> 
+		<init-param> <param-name>useAppserverSecurity</param-name> <param-value>true</param-value> 
+		</init-param> <load-on-startup>10</load-on-startup> </servlet> <servlet> 
+		<description>This is the description of my J2EE component</description> <display-name>This 
+		is the display name of my J2EE component</display-name> <servlet-name>TestServlet</servlet-name> 
+		<servlet-class>test.TestServlet</servlet-class> </servlet> <servlet-mapping 
+		id="RDS_DISPATCH_MAPPING"> <servlet-name>RDSDispatchServlet</servlet-name> 
+		<url-pattern>/CFIDE/main/ide.cfm</url-pattern> </servlet-mapping> End Add 
+		RDS servlets -->
+
+
+
+
+	<servlet>
+		<servlet-name>DataSourceServlet</servlet-name>
+		<servlet-class>cron.DataSourceServlet</servlet-class>
+		 
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DataSourceServlet</servlet-name>
+		<url-pattern>/dataSource</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MessageBrokerServlet</servlet-name>
+		<url-pattern>/messagebroker/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/error.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/error/error.jsp</location>
+	</error-page>
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/Citysee_DATA</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+	<!-- for WebSphere deployment, please uncomment -->
+	<!-- Citysee_DATA <resource-ref> <description>Messaging WorkManager</description> 
+		<res-ref-name>wm/MessagingWorkManager</res-ref-name> <res-type>com.ibm.websphere.asynchbeans.WorkManager</res-type> 
+		<res-auth>Container</res-auth> <res-sharing-scope>Shareable</res-sharing-scope> 
+		</resource-ref> -->
+
+</web-app>

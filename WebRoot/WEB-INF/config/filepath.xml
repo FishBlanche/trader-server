@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 上传路径内容定义 -->
+	<filepath>
+		<!-- 基本上传路径 此路径要设置单独的web访问路径 访问路径为 /upload -->
+        <name>basePath</name>
+        <path>/dataservices-samples/</path>					
+    </filepath>
+    <filepath>
+    	<name>savePath</name>
+    	<path>./</path>
+    </filepath>
+</root>
